@@ -67,7 +67,6 @@ class Login extends Component {
       const id = result.data.signinUser.user.id
       const token = result.data.signinUser.token
       const userName = result.data.signinUser.user.name
-      console.log('signinUserMutation ', userName)
       this._saveUserData(id, token, userName)
     } else {
       const result = await this.props.createUserMutation({
@@ -80,14 +79,12 @@ class Login extends Component {
       const id = result.data.signinUser.user.id
       const token = result.data.signinUser.token
       const userName = result.data.signinUser.user.name
-      console.log('createUserMutation ', userName)
       this._saveUserData(id, token, userName)
     }
     this.props.history.push(`/`)
   }
 
   _saveUserData = (id, token, name) => {
-    console.log('in saveUserData ', name)
     localStorage.setItem(GC_USER_ID, id)
     localStorage.setItem(GC_AUTH_TOKEN, token)
     localStorage.setItem(GC_USER_NAME, name)
