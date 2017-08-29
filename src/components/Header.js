@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
-import { GC_USER_ID, GC_AUTH_TOKEN } from '../constants'
+import { GC_USER_ID, GC_AUTH_TOKEN, GC_USER_NAME } from '../constants'
 
 class Header extends Component {
 
   render() {
     const userId = localStorage.getItem(GC_USER_ID)
+    const userName = localStorage.getItem(GC_USER_NAME)
+    console.log(userName)
     return (
       <div className='flex pa1 justify-between nowrap orange'>
         <div className='flex flex-fixed black'>
@@ -16,6 +18,8 @@ class Header extends Component {
           <div className='flex'>
             <div className='ml1'>|</div>
             <Link to='/create' className='ml1 no-underline black'>submit</Link>
+            <div className="ml1">|</div>
+            <div className="ml1">{userName} is signed in</div>
           </div>
           }
         </div>
@@ -24,6 +28,7 @@ class Header extends Component {
             <div className='ml1 pointer black' onClick={() => {
               localStorage.removeItem(GC_USER_ID)
               localStorage.removeItem(GC_AUTH_TOKEN)
+              localStorage.removeItem(GC_USER_NAME)
               this.props.history.push(`/new/1`)
             }}>logout</div>
             :
